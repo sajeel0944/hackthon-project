@@ -1,35 +1,3 @@
-// "use client";
-
-// import Form from "@/components/From";
-// import From from "@/components/From";
-// import MainContent from "@/components/MainContent";
-// import Navbar from "@/components/Navbar";
-// import PatientRegistration from "@/components/PatientRegistration";
-
-// export default function Home() {
-//   return (
-//     <>
-//       {/* <PatientRegistration/> */}
-
-//       <Navbar />
-
-//       <MainContent />
-
-//       {/* <main className="bg-gray-50 min-h-screen">
-
-//     <Form/>
-
-//         <footer className="mt-12 py-6 bg-gray-800 text-white text-center">
-//           <p>© 2023 MedAI Health Monitoring System. All rights reserved.</p>
-//           <p className="mt-2 text-sm text-gray-400">
-//             HIPAA Compliant &amp; Secure Patient Data Management
-//           </p>
-//         </footer>
-//       </main> */}
-//     </>
-//   );
-// }
-
 "use client";
 import Footer from "@/components/MainPage/Footer";
 import Hero from "@/components/MainPage/Hero";
@@ -68,3 +36,6 @@ export default function Home() {
     </div>
   );
 }
+
+
+// hjdsayuc ajshdhdyisah asjhxciusauhdihidsusc csajhchuascjbbsauihca scjch ashichsa hasdj9sacskahadnsa ijsaidhiusa ckassdndiusacacdnjnadidjcj
