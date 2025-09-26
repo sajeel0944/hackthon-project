@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaHeartbeat } from "react-icons/fa";
+import { FaHeartbeat, FaUser, FaLock, FaEye, FaEyeSlash, FaShieldAlt, FaArrowRight } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { AdministrationLogin } from "@/components/BankendApi";
 import { useRouter } from "next/navigation";
@@ -27,7 +27,7 @@ export default function AdminLogin() {
   const onSubmit = async (data: LoginFormData) => {
     setLoading(true);
     const { adminName, password } = data;
-// isAdministrationLoggedIn
+
     try {
       const response = await AdministrationLogin(adminName, password);
       setMessage(response.message);
@@ -35,9 +35,7 @@ export default function AdminLogin() {
         localStorage.setItem("adminData", JSON.stringify(response.adminDetail));
         localStorage.removeItem("patientData");
         localStorage.removeItem("doctorData");
-        // document.cookie = "isAdministrationLoggedIn=true";
-        // document.cookie = "isDoctorLoggedIn=false";
-        // document.cookie = "isPatientLoggedIn=false";
+        
         Cookies.set("isAdministrationLoggedIn", "true");
         Cookies.set("isPatientLoggedIn", "false");
         Cookies.set("isDoctorLoggedIn", "false");
@@ -46,6 +44,7 @@ export default function AdminLogin() {
       }
     } catch (error) {
       console.error("Login failed", error);
+      setMessage("Login failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -53,44 +52,68 @@ export default function AdminLogin() {
 
   useEffect(() => {
     const localStorageData = localStorage.getItem("adminData");
-
     if (localStorageData) {
-      const parsedData = JSON.parse(localStorageData); // Now it's an object
+      const parsedData = JSON.parse(localStorageData);
       if (parsedData) {
         router.push("/administration");
       }
     }
-  }, []);
+  }, [router]);
 
   return (
     <>
-      <div className="min-h-screen py-6 flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-100 font-[Poppins] px-4">
-        <div className="max-w-md w-full">
-          <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-            {/* Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 text-center">
-              <div className="animate-pulse inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/40 mb-4">
-                <i className="fas fa-user-md text-3xl">
-                  <FaHeartbeat />
-                </i>
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+          animation: float 6s ease-in-out infinite;
+        }
+      `}</style>
+      
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 font-['Inter'] relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-indigo-400/5"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-300/10 rounded-full blur-3xl"></div>
+        
+        <div className="max-w-md w-full relative z-10">
+          {/* Card Container */}
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/20">
+            
+            {/* Header Section */}
+            <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white p-10 text-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent"></div>
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/5 rounded-full"></div>
+              <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-white/5 rounded-full"></div>
+              
+              <div className="relative float-animation inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-white/10 backdrop-blur-sm mb-6 border border-white/20 shadow-lg">
+                <FaHeartbeat className="text-4xl text-white" />
               </div>
-              <h1 className="text-2xl font-bold mb-2">Administration Login Portal</h1>
-              <p className="opacity-90">
-                Access your patient monitoring dashboard
+              <h1 className="text-3xl font-bold mb-3 tracking-tight relative">
+                Admin Portal
+                <div className="absolute bottom-0 left-1/4 w-1/2 h-0.5 bg-blue-300/50 rounded-full"></div>
+              </h1>
+              <p className="opacity-95 text-blue-100 text-sm font-medium tracking-wide">
+                Secure Healthcare Management System
               </p>
             </div>
 
-            {/* Form */}
-            <div className="px-8 py-8">
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                {/* Doctor Name */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Admin Name
+            {/* Form Section */}
+            <div className="px-10 py-10">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                {/* Admin Name Field */}
+                <div className="group">
+                  <label className="block font-semibold text-gray-700 mb-3 tracking-wide uppercase text-xs">
+                    Administrator Name
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <i className="fas fa-user text-gray-400"></i>
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-transform group-focus-within:scale-110">
+                      {/* <FaUser className="text-gray-400 text-sm group-focus-within:text-blue-500 transition-colors" /> */}
                     </div>
                     <input
                       type="text"
@@ -101,25 +124,28 @@ export default function AdminLogin() {
                           message: "Admin name must be at least 3 characters",
                         },
                       })}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Enter your name"
+                      className="w-full pl-3 pr-4 py-4 border border-gray-200/80 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 bg-white/50 backdrop-blur-sm transition-all duration-300 font-medium text-gray-800 placeholder-gray-400/70 shadow-sm hover:shadow-md"
+                      placeholder="Enter administrator name"
                     />
                   </div>
                   {errors.adminName && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="text-red-500 text-sm mt-3 font-medium flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                      </svg>
                       {String(errors.adminName.message)}
                     </p>
                   )}
                 </div>
 
-                {/* Password */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                {/* Password Field */}
+                <div className="group">
+                  <label className="block font-semibold text-gray-700 mb-3 tracking-wide uppercase text-xs">
                     Password
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <i className="fas fa-lock text-gray-400"></i>
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-transform group-focus-within:scale-110">
+                      {/* <FaLock className="text-gray-400 text-sm group-focus-within:text-blue-500 transition-colors" /> */}
                     </div>
                     <input
                       type={showPassword ? "text" : "password"}
@@ -130,62 +156,90 @@ export default function AdminLogin() {
                           message: "Password must be at least 6 characters",
                         },
                       })}
-                      className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full pl-3 pr-12 py-4 border border-gray-200/80 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 bg-white/50 backdrop-blur-sm transition-all duration-300 font-medium text-gray-800 placeholder-gray-400/70 shadow-sm hover:shadow-md"
                       placeholder="Enter your password"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+                      className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-blue-600 transition-all duration-200 hover:scale-110"
                     >
-                      <i
-                        className={`fas ${
-                          showPassword ? "fa-eye-slash" : "fa-eye"
-                        }`}
-                      ></i>
+                      {showPassword ? <FaEyeSlash className="text-lg" /> : <FaEye className="text-lg" />}
                     </button>
                   </div>
                   {errors.password && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="text-red-500 text-sm mt-3 font-medium flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                      </svg>
                       {String(errors.password.message)}
                     </p>
                   )}
                 </div>
 
-                {/* Submit */}
+                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium transition cursor-pointer"
+                  className="w-full group relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-5 px-4 rounded-2xl hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-4 focus:ring-blue-500/30 font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] overflow-hidden"
                 >
-                  {loading ? "Signing in..." : "Sign In to Dashboard"}
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                  {loading ? (
+                    <span className="flex items-center justify-center relative z-10">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Authenticating...
+                    </span>
+                  ) : (
+                    <span className="flex items-center justify-center relative z-10">
+                      
+                      Access Dashboard
+                      {/* <FaArrowRight className="ml-2 transition-transform group-hover:translate-x-1" /> */}
+                    </span>
+                  )}
                 </button>
               </form>
 
-              {message ? (
+              {/* Message Display */}
+              {message && (
                 <div
-                  className={`mt-4 text-center text-sm font-medium ${
+                  className={`mt-8 p-4 rounded-2xl text-center text-sm font-semibold backdrop-blur-sm border ${
                     message.toLowerCase().includes("success")
-                      ? "text-green-600"
-                      : "text-red-600"
-                  }`}
+                      ? "bg-green-50/80 text-green-800 border-green-200/50 shadow-lg"
+                      : "bg-red-50/80 text-red-800 border-red-200/50 shadow-lg"
+                  } transition-all duration-300`}
                 >
-                  {message}
+                  <div className="flex items-center justify-center gap-2">
+                    {message.toLowerCase().includes("success") ? (
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    {message}
+                  </div>
                 </div>
-              ) : (
-                ""
               )}
 
-              <div className="mt-6 text-center">
-                <p className="text-sm text-gray-600">
-                  Secure access to patient health monitoring system
+              {/* Additional Info */}
+              <div className="mt-8 text-center">
+                <p className="text-sm text-gray-600/80 font-medium tracking-wide">
+                 🔒 Enterprise-grade healthcare administration platform
                 </p>
               </div>
             </div>
 
-            <div className="bg-gray-50 px-8 py-4 border-t border-gray-200 text-sm text-gray-600 text-center">
-              <i className="fas fa-shield-alt text-blue-500 mr-2"></i>
-              HIPAA Compliant • Encrypted Connection
+            {/* Footer */}
+            <div className="bg-gradient-to-r from-gray-50 to-blue-50/30 px-10 py-6 border-t border-gray-200/50 text-sm text-gray-600 text-center backdrop-blur-sm">
+              <div className="flex items-center justify-center gap-3">
+                <FaShieldAlt className="text-blue-500 text-base shrink-0" />
+                <span className="font-medium tracking-wide">HIPAA Compliant • End-to-End Encryption</span>
+              </div>
             </div>
           </div>
         </div>
