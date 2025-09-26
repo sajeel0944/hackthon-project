@@ -2,7 +2,7 @@
 'use client';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock, faClock, faComments, faShieldHalved, faRocket, faHeadset } from '@fortawesome/free-solid-svg-icons';
+import { faShieldHalved, faRocket, faHeadset } from '@fortawesome/free-solid-svg-icons';
 
 export default function Info() {
   return (

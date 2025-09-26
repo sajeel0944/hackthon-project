@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
 from administration.admin_login import AdministrationLogin
 from administration.doctor_registration import DoctorRegistration
 from administration.patient_registration import PatientRegistration

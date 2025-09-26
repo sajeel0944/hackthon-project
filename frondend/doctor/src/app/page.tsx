@@ -6,7 +6,7 @@ import Nav from "@/components/MainPage/Nav";
 import Options from "@/components/MainPage/Options";
 import Testimonial from "@/components/MainPage/Testimonial";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
+// import "@fortawesome/fontawesome-svg-core/styles.css";
 import { useEffect } from "react";
 config.autoAddCss = false;
 
