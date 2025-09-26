@@ -9,7 +9,7 @@ export default function Nav() {
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-gradient-to-b from-blue-800 to-blue-900 p-2 rounded-lg">
-              <FontAwesomeIcon icon={faHeartbeat} className="text-xl text-white" />
+              <FontAwesomeIcon icon={faHeartbeat} className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold text-gray-800">MedConnect</span>
           </div>

@@ -1,11 +1,6 @@
 "use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHeartbeat,
-  faStethoscope,
-  faPhoneAlt,
-  faEnvelope,
-  faMapMarkerAlt,
   faLaptopMedical,
   faVideo,
   faClipboardCheck,
@@ -16,12 +11,7 @@ import {
   faXRay,
   faTeeth,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebookF,
-  faTwitter,
-  faInstagram,
-  faLinkedinIn,
-} from "@fortawesome/free-brands-svg-icons";
+
 import Nav from "@/components/MainPage/Nav";
 import Footer from "@/components/MainPage/Footer";
 import Hero from "@/components/MainPage/Hero";
@@ -135,7 +125,7 @@ export default function ServicesPage() {
             >
               <div className="p-8 flex flex-col h-full">
                 <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-6 text-blue-600">
-                  <FontAwesomeIcon icon={service.icon} className="text-2xl" />
+                  <FontAwesomeIcon icon={service.icon} className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-800">
                   {service.title}

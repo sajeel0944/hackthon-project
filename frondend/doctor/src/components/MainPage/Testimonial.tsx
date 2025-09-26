@@ -13,7 +13,7 @@ export default function Testimonial() {
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center mb-6">
               <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                <FontAwesomeIcon icon={faUser} className="text-blue-600 text-xl" />
+                <FontAwesomeIcon icon={faUser} className="text-blue-600 w-8 h-8" />
               </div>
               <div>
                 <h4 className="font-semibold text-gray-800">Sarah Johnson</h4>
@@ -26,7 +26,7 @@ export default function Testimonial() {
           <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center mb-6">
               <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                <FontAwesomeIcon icon={faUser} className="text-purple-600 text-xl" />
+                <FontAwesomeIcon icon={faUser} className="text-purple-600 w-8 h-8" />
               </div>
               <div>
                 <h4 className="font-semibold text-gray-800">Michael Chen</h4>

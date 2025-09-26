@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-3 mb-6">
               <div className="bg-blue-600 p-2 rounded-lg">
-                <FontAwesomeIcon icon={faHeartbeat} className="text-xl" />
+                <FontAwesomeIcon icon={faHeartbeat} className="w-6 h-6" />
               </div>
               <span className="text-xl font-bold">MedConnect</span>
             </div>
@@ -31,15 +31,15 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6 text-white">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-center text-gray-400">
-                <FontAwesomeIcon icon={faPhoneAlt} className="mr-3 text-blue-400" />
+                <FontAwesomeIcon icon={faPhoneAlt} className="mr-3 text-blue-400 w-5 h-5" />
                 (800) 123-4567
               </li>
               <li className="flex items-center text-gray-400">
-                <FontAwesomeIcon icon={faEnvelope} className="mr-3 text-blue-400" />
+                <FontAwesomeIcon icon={faEnvelope} className="mr-3 text-blue-400 w-5 h-5" />
                 support@medconnect.com
               </li>
               <li className="flex items-center text-gray-400">
-                <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3 text-blue-400" />
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3 text-blue-400 w-5 h-5" />
                 123 Health Ave, Medical Center
               </li>
             </ul>
@@ -49,16 +49,16 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6 text-white">Follow Us</h3>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-blue-600 transition-colors">
-                <FontAwesomeIcon icon={faFacebookF} />
+                <FontAwesomeIcon icon={faFacebookF} className='w-4 h-4'/>
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-blue-400 transition-colors">
-                <FontAwesomeIcon icon={faTwitter} />
+                <FontAwesomeIcon icon={faTwitter}  className='w-4 h-4'/>
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-purple-600 transition-colors">
-                <FontAwesomeIcon icon={faInstagram} />
+                <FontAwesomeIcon icon={faInstagram}  className='w-4 h-4'/>
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-blue-700 transition-colors">
-                <FontAwesomeIcon icon={faLinkedinIn} />
+                <FontAwesomeIcon icon={faLinkedinIn}  className='w-4 h-4'/>
               </a>
             </div>
           </div>
