@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaHeartbeat, FaUserMd, FaLock, FaEye, FaEyeSlash, FaShieldAlt } from "react-icons/fa";
+import { FaHeartbeat, FaUserMd, FaLock, FaEye, FaEyeSlash, FaShieldAlt, FaStethoscope } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { DoctorSignIn } from "@/components/BankendApi";
 import { useRouter } from "next/navigation";
@@ -65,14 +65,25 @@ export default function DoctorLogin() {
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
+        body, html {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          overflow: hidden;
+        }
+        
         .login-container {
           background: linear-gradient(135deg, 
             rgba(14, 165, 233, 0.05) 0%, 
             rgba(99, 102, 241, 0.05) 50%, 
             rgba(139, 92, 246, 0.05) 100%);
-          min-height: 100vh;
+          height: 100vh;
+          width: 100vw;
           position: relative;
           overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .login-container::before {
@@ -96,12 +107,18 @@ export default function DoctorLogin() {
             0 25px 50px rgba(0, 0, 0, 0.1),
             inset 0 1px 0 rgba(255, 255, 255, 0.8),
             0 0 0 1px rgba(255, 255, 255, 0.1);
+          width: 95%;
+          max-width: 420px;
+          max-height: 95vh;
+          display: flex;
+          flex-direction: column;
         }
 
         .header-gradient {
           background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
           position: relative;
           overflow: hidden;
+          padding: 1.5rem 2rem;
         }
 
         .header-gradient::before {
@@ -206,160 +223,343 @@ export default function DoctorLogin() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
+
+        .form-content {
+          padding: 1.5rem 2rem;
+          flex: 1;
+          overflow-y: auto;
+          max-height: calc(95vh - 200px);
+        }
+
+        .form-content::-webkit-scrollbar {
+          width: 4px;
+        }
+
+        .form-content::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.05);
+          border-radius: 10px;
+        }
+
+        .form-content::-webkit-scrollbar-thumb {
+          background: rgba(14, 165, 233, 0.3);
+          border-radius: 10px;
+        }
+
+        .compact-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .compact-icon {
+          width: 60px;
+          height: 60px;
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 0.75rem;
+        }
+
+        .compact-title {
+          font-size: 1.75rem;
+          margin-bottom: 0.25rem;
+        }
+
+        .compact-subtitle {
+          font-size: 0.9rem;
+        }
+
+        .compact-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .compact-input-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .compact-label {
+          font-size: 0.85rem;
+          font-weight: 600;
+        }
+
+        .compact-input {
+          padding: 0.75rem 1rem;
+          font-size: 0.9rem;
+        }
+
+        .compact-button {
+          padding: 0.75rem;
+          font-size: 0.95rem;
+          margin-top: 0.5rem;
+        }
+
+        .compact-message {
+          padding: 0.75rem;
+          font-size: 0.85rem;
+          margin-top: 0.5rem;
+        }
+
+        .compact-footer {
+          font-size: 0.75rem;
+          padding: 0.75rem 2rem;
+        }
+
+        .support-info {
+          font-size: 0.7rem;
+          margin-top: 0.5rem;
+        }
+
+        @media (max-height: 700px) {
+          .glass-card {
+            max-height: 98vh;
+          }
+          
+          .header-gradient {
+            padding: 1rem 2rem;
+          }
+          
+          .form-content {
+            padding: 1rem 2rem;
+            max-height: calc(98vh - 150px);
+          }
+          
+          .compact-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 0.5rem;
+          }
+          
+          .compact-title {
+            font-size: 1.5rem;
+          }
+          
+          .compact-subtitle {
+            font-size: 0.8rem;
+          }
+        }
+
+        @media (max-height: 600px) {
+          .header-gradient {
+            padding: 0.75rem 2rem;
+          }
+          
+          .form-content {
+            padding: 0.75rem 2rem;
+            max-height: calc(98vh - 120px);
+          }
+          
+          .compact-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 0.25rem;
+          }
+          
+          .compact-title {
+            font-size: 1.25rem;
+          }
+          
+          .compact-subtitle {
+            font-size: 0.75rem;
+          }
+          
+          .compact-input-group {
+            gap: 0.25rem;
+          }
+          
+          .compact-input {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.85rem;
+          }
+          
+          .compact-button {
+            padding: 0.6rem;
+            font-size: 0.9rem;
+          }
+        }
       `}</style>
 
-      <div className="login-container py-8 flex items-center justify-center px-4 font-inter">
-        <div className="relative z-10 max-w-md w-full">
-          {/* Login Card */}
-          <div className="glass-card rounded-3xl overflow-hidden">
-            {/* Header Section */}
-            <div className="header-gradient text-white p-8 text-center relative">
-              <div className="icon-glow inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm mb-4">
-                <FaUserMd className="text-3xl text-white" />
+      <div className="login-container font-inter">
+        <div className="glass-card rounded-2xl overflow-hidden">
+          {/* Header Section */}
+          <div className="header-gradient text-white">
+            <div className="compact-header">
+              <div className="compact-icon bg-white/20 backdrop-blur-sm">
+                <FaUserMd className="text-2xl text-white" />
               </div>
-              <h1 className="text-3xl font-bold mb-2 font-inter">Doctor Portal</h1>
-              <p className="opacity-90 text-blue-100 font-inter">
-                Secure access to patient monitoring dashboard
+              <h1 className="compact-title font-bold tracking-tight">
+                Doctor Portal
+              </h1>
+              <p className="compact-subtitle text-blue-100 font-light">
+                Secure patient monitoring dashboard
               </p>
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-2">
-                <FaShieldAlt className="text-white/80 text-sm" />
-                <span className="text-xs text-white/80 font-inter">HIPAA Compliant</span>
-              </div>
-            </div>
-
-            {/* Form Section */}
-            <div className="px-8 py-8">
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                {/* Doctor Name Field */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-3 font-inter">
-                    Doctor Name
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaUserMd className="text-gray-400 text-lg" />
-                    </div>
-                    <input
-                      type="text"
-                      {...register("doctorName", {
-                        required: "Doctor name is required",
-                        minLength: {
-                          value: 3,
-                          message: "Doctor name must be at least 3 characters",
-                        },
-                      })}
-                      className="input-field w-full pl-3 pr-4 py-4 rounded-xl focus:outline-none font-inter placeholder-gray-400"
-                      placeholder="Enter your full name"
-                    />
-                  </div>
-                  {errors.doctorName && (
-                    <p className="text-red-500 text-sm mt-3 font-medium flex items-center gap-2">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                      </svg>
-                      {String(errors.doctorName.message)}
-                    </p>
-                  )}
-                </div>
-
-                {/* Password Field */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-3 font-inter">
-                    Password
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <FaLock className="text-gray-400 text-lg" />
-                    </div>
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      {...register("password", {
-                        required: "Password is required",
-                        minLength: {
-                          value: 6,
-                          message: "Password must be at least 6 characters",
-                        },
-                      })}
-                      className="input-field w-full pl-3 pr-12 py-4 rounded-xl focus:outline-none font-inter placeholder-gray-400"
-                      placeholder="Enter your password"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
-                    >
-                      {showPassword ? <FaEyeSlash className="text-lg" /> : <FaEye className="text-lg" />}
-                    </button>
-                  </div>
-                  {errors.password && (
-                    <p className="text-red-500 text-sm mt-3 font-medium flex items-center gap-2">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                      </svg>
-                      {String(errors.password.message)}
-                    </p>
-                  )}
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="login-button w-full text-white py-4 px-6 rounded-xl font-semibold text-lg focus:outline-none focus:ring-4 focus:ring-blue-200 disabled:opacity-50 disabled:cursor-not-allowed font-inter"
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                >
-                  <span className="relative z-10 flex items-center justify-center space-x-2">
-                    {loading ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Signing In...</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>Access Dashboard</span>
-                      </>
-                    )}
-                  </span>
-                </button>
-              </form>
-
-              {/* Message Display */}
-              {message && (
-                <div
-                  className={`mt-6 p-4 rounded-xl text-center font-medium font-inter ${
-                    message.toLowerCase().includes("success")
-                      ? "bg-green-50 text-green-700 border border-green-200"
-                      : "bg-red-50 text-red-700 border border-red-200"
-                  }`}
-                >
-                  {message}
-                </div>
-              )}
-
-              {/* Additional Info */}
-              <div className="mt-6 text-center">
-                <p className="text-sm text-gray-600 font-inter">
-                  🔒 Secure access to patient health monitoring system
-                </p>
-              </div>
-            </div>
-
-            {/* Security Footer */}
-            <div className="security-badge px-6 py-4 border-t border-gray-100 text-center">
-               <div className="flex items-center justify-center text-sm text-gray-600">
-                <FaShieldAlt className="text-blue-500 mr-2" />
-                <span>HIPAA Compliant • End-to-End Encryption </span>
+              
+              {/* Security Indicator */}
+              <div className="flex items-center space-x-1 mt-1">
+                <FaShieldAlt className="text-white/80 text-xs" />
+                <span className="text-xs text-white/80">HIPAA Compliant</span>
               </div>
             </div>
           </div>
 
-          {/* Background Decorative Elements */}
-          <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
-            <div className="absolute bottom-0 left-1/2 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-500"></div>
+          {/* Form Section */}
+          <div className="form-content">
+            <form onSubmit={handleSubmit(onSubmit)} className="compact-form">
+              {/* Doctor Name Field */}
+              <div className="compact-input-group">
+                <label className="compact-label text-gray-700">
+                  Doctor Name
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FaUserMd className="text-gray-400 text-sm" />
+                  </div>
+                  <input
+                    type="text"
+                    {...register("doctorName", {
+                      required: "Doctor name is required",
+                      minLength: {
+                        value: 3,
+                        message: "Doctor name must be at least 3 characters",
+                      },
+                    })}
+                    className="compact-input input-field w-full pl-10 pr-4 rounded-lg focus:outline-none placeholder-gray-400"
+                    placeholder="Enter your full name"
+                    disabled={loading}
+                  />
+                </div>
+                {errors.doctorName && (
+                  <p className="text-red-500 text-xs font-medium flex items-center gap-1">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                    {String(errors.doctorName.message)}
+                  </p>
+                )}
+              </div>
+
+              {/* Password Field */}
+              <div className="compact-input-group">
+                <label className="compact-label text-gray-700">
+                  Password
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FaLock className="text-gray-400 text-sm" />
+                  </div>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    {...register("password", {
+                      required: "Password is required",
+                      minLength: {
+                        value: 6,
+                        message: "Password must be at least 6 characters",
+                      },
+                    })}
+                    className="compact-input input-field w-full pl-10 pr-10 rounded-lg focus:outline-none placeholder-gray-400"
+                    placeholder="Enter your password"
+                    disabled={loading}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                    disabled={loading}
+                  >
+                    {showPassword ? <FaEyeSlash className="text-sm" /> : <FaEye className="text-sm" />}
+                  </button>
+                </div>
+                {errors.password && (
+                  <p className="text-red-500 text-xs font-medium flex items-center gap-1">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                    {String(errors.password.message)}
+                  </p>
+                )}
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="compact-button login-button text-white rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                <span className="relative z-10 flex items-center justify-center space-x-2">
+                  {loading ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Signing In...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Access Dashboard</span>
+                    </>
+                  )}
+                </span>
+              </button>
+            </form>
+
+            {/* Message Display */}
+            {message && (
+              <div
+                className={`compact-message rounded-lg text-center font-medium ${
+                  message.toLowerCase().includes("success")
+                    ? "bg-green-50 text-green-700 border border-green-200"
+                    : "bg-red-50 text-red-700 border border-red-200"
+                }`}
+              >
+                <div className="flex items-center justify-center space-x-2">
+                  {message.toLowerCase().includes("success") ? (
+                    <FaStethoscope className="text-green-500 text-sm" />
+                  ) : (
+                    <FaLock className="text-red-500 text-sm" />
+                  )}
+                  <span className="text-sm">{message}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Additional Info */}
+            <div className="text-center pt-2">
+              <p className="text-xs text-gray-600">
+                🔒 Secure access to patient health monitoring system
+              </p>
+            </div>
           </div>
+
+          {/* Security Footer */}
+          <div className="compact-footer security-badge border-t border-gray-100 text-center">
+            <div className="flex items-center justify-center text-gray-600">
+              <FaShieldAlt className="text-blue-500 mr-1" />
+              <span>HIPAA Compliant • End-to-End Encryption</span>
+            </div>
+            
+            {/* Support Info */}
+            <div className="support-info text-center">
+              <p className="text-gray-400">
+                Need assistance? Contact{" "}
+                <a href="mailto:support@medaihealth.com" className="text-blue-500 hover:underline font-medium">
+                  support@medaihealth.com
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Background Decorative Elements */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+          <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-500"></div>
         </div>
       </div>
     </>

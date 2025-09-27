@@ -67,9 +67,6 @@ export default function PremiumNav() {
 
         .emergency-pro {
           background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
-          box-shadow: 
-            0 4px 15px rgba(220, 38, 38, 0.3),
-            0 0 30px rgba(220, 38, 38, 0.2);
           position: relative;
           overflow: hidden;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -77,9 +74,6 @@ export default function PremiumNav() {
 
         .emergency-pro:hover {
           transform: translateY(-2px);
-          box-shadow: 
-            0 6px 25px rgba(220, 38, 38, 0.4),
-            0 0 40px rgba(220, 38, 38, 0.3);
         }
 
         .emergency-pro::before {
@@ -151,21 +145,9 @@ export default function PremiumNav() {
         }
 
         .pulse-pro {
-          animation: pulse-pro 2s infinite;
+          /* animation removed to eliminate shadow effect */
         }
-
-        @keyframes pulse-pro {
-          0%, 100% {
-            box-shadow: 
-              0 4px 15px rgba(220, 38, 38, 0.3),
-              0 0 25px rgba(220, 38, 38, 0.2);
-          }
-          50% {
-            box-shadow: 
-              0 4px 20px rgba(220, 38, 38, 0.4),
-              0 0 35px rgba(220, 38, 38, 0.3);
-          }
-        }
+        /* @keyframes pulse-pro removed to eliminate shadow effect */
 
         .logo-glow {
           background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
@@ -394,7 +376,14 @@ export default function PremiumNav() {
 }
 
 // Desktop NavLink Component
-function NavLink({ href, label, isActive, onClick }) {
+interface NavLinkProps {
+  href: string;
+  label: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+function NavLink({ href, label, isActive, onClick }: NavLinkProps) {
   return (
     <Link href={href} className="block">
       <button
@@ -412,7 +401,14 @@ function NavLink({ href, label, isActive, onClick }) {
 }
 
 // Mobile NavLink Component
-function MobileNavLink({ href, label, isActive, onClick }) {
+interface MobileNavLinkProps {
+  href: string;
+  label: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+function MobileNavLink({ href, label, isActive, onClick }: MobileNavLinkProps) {
   return (
     <Link href={href} className="block">
       <button

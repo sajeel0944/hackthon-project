@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Options() {
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
     <>
@@ -320,7 +320,7 @@ export default function Options() {
                 Administration
               </h3>
               <p className="text-slate-600 leading-relaxed text-center mb-6 font-inter text-lg">
-                Manage healthcare services, user accounts, system settings, and oversee the operational aspects of the healthcare platform.
+    Manage healthcare services, user accounts, medical records, system settings, and efficiently oversee the operational aspects of the healthcare management platform.”
               </p>
 
               {/* Features List */}

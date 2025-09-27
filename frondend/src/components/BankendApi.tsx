@@ -4,8 +4,10 @@
 
 // ------------------------------------is ky andar admin login ho raha hai---------------------------------------------------------------------
 
+
+
 export async function AdministrationLogin(adminName: string, password: string) {
-  const base = process.env.NEXT_PUBLIC_ADDTOCARDAPI;
+  const base = "http://localhost:8000";
   if (base) {
     try {
       const reponse = await fetch(

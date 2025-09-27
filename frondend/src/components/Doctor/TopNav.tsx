@@ -25,7 +25,7 @@ const TopNav = () => {
     // document.cookie = "isDoctorLoggedIn=false";
     Cookies.set("isDoctorLoggedIn", "false");
 
-    router.push("/");
+    router.push("/doctor/doctor-login");
   };
 
   return (

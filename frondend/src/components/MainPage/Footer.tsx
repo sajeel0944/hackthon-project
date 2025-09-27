@@ -261,15 +261,12 @@ export default function Footer() {
               {/* Newsletter */}
               <div className="mb-6">
                 <p className="text-slate-300 mb-4 font-inter">Subscribe to our newsletter for updates</p>
-                <div className="flex space-x-2">
+                <div className="flex">
                   <input 
                     type="email" 
                     placeholder="Enter your email"
-                    className="newsletter-input flex-1 px-4 py-3 rounded-lg text-white placeholder-slate-400 outline-none font-inter"
+                    className="newsletter-input w-full px-4 py-3 rounded-lg text-white placeholder-slate-400 outline-none font-inter"
                   />
-                  <button className="newsletter-btn px-4 py-3 rounded-lg text-white font-inter font-medium">
-                    <FontAwesomeIcon icon={faArrowRight} />
-                  </button>
                 </div>
               </div>
 

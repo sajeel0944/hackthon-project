@@ -39,7 +39,7 @@ const Navbar = ({ pageName }: NavbarProps) => {
 
           {/* Center - Navigation Tabs */}
           <div className="hidden md:flex space-x-1 bg-gray-100 rounded-xl p-1">
-            <Link
+            {/* <Link
               href={"/patient"}
               className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${
                 pageName === "home"
@@ -49,7 +49,7 @@ const Navbar = ({ pageName }: NavbarProps) => {
             >
               <i className="fas fa-info-circle mr-2"></i>
               Home
-            </Link>
+            </Link> */}
             <Link
               href={"/patient/ai-assistant"}
               className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${
