@@ -298,7 +298,7 @@ async def patient_assistant(messages: list[dict], userName: str):
             if event.type == "raw_response_event":
                 continue
             elif event.type == "agent_updated_stream_event":
-                print(f"Agent updated: {event.new_agent.name}")
+                # print(f"Agent updated: {event.new_agent.name}")
                 continue
             elif event.type == "run_item_stream_event":
                 if event.item.type == "tool_call_item":
@@ -306,15 +306,14 @@ async def patient_assistant(messages: list[dict], userName: str):
                 elif event.item.type == "tool_call_output_item":
                     pass
                 elif event.item.type == "message_output_item":
-                    print(ItemHelpers.text_message_output(event.item))
-                    return ItemHelpers.text_message_output(event.item)
+                    return(ItemHelpers.text_message_output(event.item))
                 else:
                     pass 
     except:
         return f"Sorry, I'm currently unavailable. Please try again in a few moments. "
     
 
-
+# asyncio.run(patient_assistant("mujy ye bata o ky mujy mery history do", "saif"))
 
 
 
