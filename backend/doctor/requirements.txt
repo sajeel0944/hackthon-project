@@ -1,0 +1,6 @@
+fastapi[standard]
+pymongo
+dotenv
+openai-agents 
+markdown
+motor 

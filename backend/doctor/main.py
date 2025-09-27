@@ -1,3 +1,4 @@
+import asyncio
 import os
 from typing import Optional
 from dotenv import load_dotenv
@@ -9,6 +10,7 @@ from administration.doctor_registration import DoctorRegistration
 from administration.patient_registration import PatientRegistration
 from doctor.add_patient_details import AddPatientDetails
 from doctor.doctor_login import DoctorLogin
+from patient.assistant import patient_assistant
 from patient.patient_login import PatientLogin
 
 #---------------------------------------------------------------------------------------------------------
@@ -42,7 +44,7 @@ def patient_login(adminName: str, password: str) -> dict:
         
         return response
     except Exception as e:
-        return {"response": False, "message": "Server error. Please try again later.", "adminDetail": {}}
+        return {"response": False, "message": f"Server error. Please try again later.", "adminDetail": {}}
     
 
 # ------------------------------------is ky andar patient register ho raha hai--------------------------------------
@@ -158,3 +160,19 @@ def patient_login(patientName: str, password: str):
         return response
     except Exception as e:
         return {"response": False, "message": "Server error. Please try again later.", "patientData": {}}
+
+
+#-----------------------------------------------patient Agent--------------------------------------------------------------
+ 
+class PatientAgentSchema(BaseModel):
+    messages: list[dict]
+    userName: str
+
+@app.post("/patient-assistant")
+def patient_agent(data: PatientAgentSchema):
+    try:
+        response = asyncio.run(patient_assistant(messages= data.messages, userName=data.userName))
+        return response
+    except Exception as e:
+        return "Sorry, I'm currently unavailable. Please try again in a few moments."
+    

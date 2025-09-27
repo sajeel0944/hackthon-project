@@ -33,10 +33,10 @@ class AdministrationLogin:
                     }
                     return {"response": True, "message": "Successfully Logged in", "adminDetail": adminDetail}
                 else:
-                    return {"response": False, "message": "Invalid username or password. Please try again.", adminDetail:{}}
+                    return {"response": False, "message": "Invalid username or password. Please try again.", "adminDetail":{}}
                 
         except Exception as e:
-            return {"response": False, "message": "Server error. Please try again later.", adminDetail:{}}
+            return {"response": False, "message": f"Server error. Please try again later.", "adminDetail":{}}
 
 # sa = AdministrationLogin("iffat", "333333")
 # rich.print(sa.login())

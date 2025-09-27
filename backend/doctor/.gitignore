@@ -8,3 +8,8 @@ wheels/
 
 # Virtual environments
 .venv
+
+
+# local env files
+.env*.local
+.env   
